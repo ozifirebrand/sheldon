@@ -1,0 +1,30 @@
+# Backend (Go)
+*.exe
+*.db
+backend/scheduler/
+
+# Frontend (Node / Vite)
+frontend/node_modules
+frontend/dist
+frontend/dist-ssr
+frontend/*.local
+frontend/logs
+frontend/npm-debug.log*
+frontend/yarn-debug.log*
+frontend/yarn-error.log*
+frontend/pnpm-debug.log*
+frontend/lerna-debug.log*
+frontend/.vscode/*
+!frontend/.vscode/extensions.json
+
+# Logs (anywhere)
+*.log
+
+# Editor / OS
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
