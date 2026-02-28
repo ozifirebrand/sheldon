@@ -1,0 +1,28 @@
+.app {
+  font-family: system-ui, sans-serif;
+  color: #111;
+}
+
+.loading {
+  padding: 1rem;
+  font-family: system-ui, sans-serif;
+}
+
+.error {
+  padding: 1rem;
+  font-family: system-ui, sans-serif;
+  color: crimson;
+}
+
+.app h1 {
+  margin: 0 0 0.5rem 0;
+}
+
+.app section {
+  margin-top: 1rem;
+}
+
+.app h2 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+}

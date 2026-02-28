@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package scheduler.v1;
+
+option go_package = "scheduler/backend/gen/schedulerv1";
+
+service SchedulerService {
+  rpc CreateAppointment(CreateAppointmentRequest) returns (Appointment);
+  rpc ListAppointments(ListAppointmentsRequest) returns (ListAppointmentsResponse);
+  rpc DeleteAppointment(DeleteAppointmentRequest) returns (DeleteAppointmentResponse);
+  rpc SubscribeAppointmentUpdates(SubscribeAppointmentUpdatesRequest) returns (stream AppointmentEvent);
+}
+
+message Appointment {
+  string id = 1;
+  string doctor_id = 2;
+  string doctor_name = 3;
+  int64 start_time_unix = 4;  // slot start as Unix seconds
+  int32 duration_slots = 5;   // 1 or 2 (15 or 30 min)
+  string patient_name = 6;
+  string patient_contact = 7;
+}
+
+message CreateAppointmentRequest {
+  string doctor_id = 1;
+  string doctor_name = 2;  
+  int64 start_time_unix = 3;
+  int32 duration_slots = 4;
+  string patient_name = 5;
+  string patient_contact = 6;
+}
+
+message ListAppointmentsRequest {
+  int64 from_time_unix = 1;  // inclusive start of range
+  int64 to_time_unix = 2;    // exclusive end of range
+}
+
+message ListAppointmentsResponse {
+  repeated Appointment appointments = 1;
+}
+
+message DeleteAppointmentRequest {
+  string id = 1;
+}
+
+message DeleteAppointmentResponse {}
+
+message SubscribeAppointmentUpdatesRequest {}
+
+message AppointmentEvent {
+  string appointment_id = 1;
+  string action = 2;  // "created" | "deleted"
+  Appointment appointment = 3;  // full appointment for created; empty for deleted
+}
