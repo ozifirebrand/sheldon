@@ -35,26 +35,6 @@
   font-size: 0.8rem;
 }
 
-/* Black dot for taken slots */
-.slotDot {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #111;
-  flex-shrink: 0;
-}
-
-.slotLegendDot {
-  display: inline-block;
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: #111;
-  vertical-align: middle;
-  margin-right: 4px;
-}
-
-/* Form layout */
 .bookingForm {
   margin-bottom: 2rem;
   padding: 1rem;
@@ -85,12 +65,6 @@
 
 .slotPickerWrap {
   grid-column: 1 / -1;
-}
-
-.slotLegend {
-  margin: 4px 0 0;
-  font-size: 12px;
-  color: #666;
 }
 
 .submitBtn {

@@ -88,22 +88,11 @@ export default function BookingForm({
                     disabled={taken}
                     className="radio"
                   />
-                  {taken && (
-                    <span className="slotDot" aria-hidden />
-                  )}
                   <span className="slotTime">{s.label}</span>
                 </label>
               )
             })}
           </div>
-          <p className="slotLegend">
-            {takenSlotUnixSet.size > 0 && (
-              <span title="This time slot is taken.">
-                <span className="slotLegendDot" />
-                Black dot = taken
-              </span>
-            )}
-          </p>
         </div>
         <label>Duration</label>
         <select value={duration} onChange={(e) => setDuration(Number(e.target.value))}>
