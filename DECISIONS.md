@@ -40,6 +40,8 @@
 
 - Auth was left out to keep scope focused. Anyone can create or delete any appointment.
 
+- **Contact information is required.** We collect patient name and contact (email or phone) at booking. Contact info is compulsory because it supports validation during the appointment—for our use case and our need to validate the person attending (e.g. reminders, follow-up, or in-clinic verification).
+
 ## Doctor dropdown
 
 - The UI gets the doctor list from `GET /api/doctors`. For this app it returns one static doctor, Dr Smith as default.
