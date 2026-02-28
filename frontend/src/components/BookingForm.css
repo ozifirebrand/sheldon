@@ -1,0 +1,107 @@
+/* Slot picker: grey box container and grey slot boxes, smaller font */
+.slotPicker {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  gap: 4px;
+  max-height: 140px;
+  overflow-y: auto;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  background: #e8e8e8;
+}
+
+.slotOption {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  background: #d0d0d0;
+  font-size: 0.85rem;
+}
+
+.slotOptionSelected {
+  background: #e0e7ff;
+}
+
+.slotOptionTaken {
+  cursor: default;
+  opacity: 0.85;
+}
+
+.slotTime {
+  font-size: 0.8rem;
+}
+
+/* Black dot for taken slots */
+.slotDot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #111;
+  flex-shrink: 0;
+}
+
+.slotLegendDot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #111;
+  vertical-align: middle;
+  margin-right: 4px;
+}
+
+/* Form layout */
+.bookingForm {
+  margin-bottom: 2rem;
+  padding: 1rem;
+  background: #fff;
+  border-radius: 8px;
+}
+
+.bookingForm h2 {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.1rem;
+}
+
+.formError {
+  color: crimson;
+  margin: 0 0 0.5rem 0;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem 1rem;
+  max-width: 400px;
+}
+
+.formGrid label {
+  display: block;
+}
+
+.slotPickerWrap {
+  grid-column: 1 / -1;
+}
+
+.slotLegend {
+  margin: 4px 0 0;
+  font-size: 12px;
+  color: #666;
+}
+
+.submitBtn {
+  margin-top: 0.5rem;
+}
+
+.radio {
+  margin: 0;
+}
+
+.selectPlaceholder {
+  color: #666;
+  font-size: 0.85rem;
+}

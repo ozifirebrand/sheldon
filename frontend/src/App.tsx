@@ -12,6 +12,7 @@ import BookingForm from './components/BookingForm'
 import AppointmentList from './components/AppointmentList'
 import { slotOptions, getTakenSlotUnixSet } from './utils/slotUtils'
 import { CLINIC_NAME } from './constants'
+import './App.css'
 
 function normalizeList(list: Appointment[] | null | undefined): Appointment[] {
   return Array.isArray(list) ? list : []
@@ -109,18 +110,14 @@ export default function App() {
   const takenSlotUnixSet = getTakenSlotUnixSet(appointments, selectedDate)
 
   if (loading) {
-    return <div style={{ padding: '1rem', fontFamily: 'system-ui' }}>Loading...</div>
+    return <div className="loading">Loading...</div>
   }
   if (error) {
-    return (
-      <div style={{ padding: '1rem', fontFamily: 'system-ui', color: 'crimson' }}>
-        {error}
-      </div>
-    )
+    return <div className="error">{error}</div>
   }
 
   return (
-    <div style={{ fontFamily: 'system-ui', color: '#111' }}>
+    <div className="app">
       <h1>{CLINIC_NAME} – Appointments</h1>
       <BookingForm
         doctors={doctors}

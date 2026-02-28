@@ -1,6 +1,7 @@
 import type { Doctor } from '../api'
 import { DURATION_SLOTS, CLINIC_NAME } from '../constants'
 import type { SlotOption } from '../utils/slotUtils'
+import './BookingForm.css'
 
 export interface BookingFormProps {
   doctors: Doctor[]
@@ -42,13 +43,10 @@ export default function BookingForm({
   takenSlotUnixSet,
 }: BookingFormProps) {
   return (
-    <form
-      onSubmit={onSubmit}
-      style={{ marginBottom: '2rem', padding: '1rem', background: '#fff', borderRadius: 8 }}
-    >
+    <form onSubmit={onSubmit} className="bookingForm">
       <h2>Book an appointment at {CLINIC_NAME}</h2>
-      {formError && <p style={{ color: 'crimson' }}>{formError}</p>}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '0.5rem 1rem', maxWidth: 400 }}>
+      {formError && <p className="formError">{formError}</p>}
+      <div className="formGrid">
         <label>Doctor</label>
         <select value={doctorId} onChange={(e) => setDoctorId(e.target.value)}>
           {doctors.map((d) => (
@@ -58,30 +56,10 @@ export default function BookingForm({
         <label>Date</label>
         <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
         <label>Time slot</label>
-        <div style={{ gridColumn: '1 / -1' }}>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(80px, 1fr))',
-              gap: 4,
-              maxHeight: 140,
-              overflowY: 'auto',
-              padding: 4,
-              border: '1px solid #ccc',
-              borderRadius: 4,
-              background: '#fafafa',
-            }}
-          >
+        <div className="slotPickerWrap">
+          <div className="slotPicker">
             <label
-              style={{
-                display: 'flex',
-                alignItems: 'center',
-                gap: 6,
-                padding: '4px 6px',
-                borderRadius: 4,
-                cursor: 'pointer',
-                background: slot === '' ? '#e0e7ff' : 'transparent',
-              }}
+              className={`slotOption ${slot === '' ? 'slotOptionSelected' : ''}`}
             >
               <input
                 type="radio"
@@ -89,9 +67,9 @@ export default function BookingForm({
                 value=""
                 checked={slot === ''}
                 onChange={() => setSlot('')}
-                style={{ margin: 0 }}
+                className="radio"
               />
-              <span style={{ color: '#666' }}>Select...</span>
+              <span className="selectPlaceholder">Select...</span>
             </label>
             {slots.map((s) => {
               const taken = takenSlotUnixSet.has(s.value)
@@ -99,16 +77,7 @@ export default function BookingForm({
                 <label
                   key={s.value}
                   title={taken ? 'This time slot is taken.' : undefined}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: 6,
-                    padding: '4px 6px',
-                    borderRadius: 4,
-                    cursor: taken ? 'default' : 'pointer',
-                    opacity: taken ? 0.85 : 1,
-                    background: slot === String(s.value) ? '#e0e7ff' : 'transparent',
-                  }}
+                  className={`slotOption ${slot === String(s.value) ? 'slotOptionSelected' : ''} ${taken ? 'slotOptionTaken' : ''}`}
                 >
                   <input
                     type="radio"
@@ -117,30 +86,21 @@ export default function BookingForm({
                     checked={slot === String(s.value)}
                     onChange={() => !taken && setSlot(String(s.value))}
                     disabled={taken}
-                    style={{ margin: 0 }}
+                    className="radio"
                   />
                   {taken && (
-                    <span
-                      style={{
-                        width: 6,
-                        height: 6,
-                        borderRadius: '50%',
-                        background: '#c94a4a',
-                        flexShrink: 0,
-                      }}
-                      aria-hidden
-                    />
+                    <span className="slotDot" aria-hidden />
                   )}
-                  <span>{s.label}</span>
+                  <span className="slotTime">{s.label}</span>
                 </label>
               )
             })}
           </div>
-          <p style={{ margin: '4px 0 0', fontSize: 12, color: '#666' }}>
+          <p className="slotLegend">
             {takenSlotUnixSet.size > 0 && (
               <span title="This time slot is taken.">
-                <span style={{ display: 'inline-block', width: 6, height: 6, borderRadius: '50%', background: '#c94a4a', verticalAlign: 'middle', marginRight: 4 }} />
-                Red dot = taken
+                <span className="slotLegendDot" />
+                Black dot = taken
               </span>
             )}
           </p>
@@ -167,7 +127,7 @@ export default function BookingForm({
           placeholder="Email or phone"
         />
       </div>
-      <button type="submit" style={{ marginTop: '0.5rem' }}>Book appointment</button>
+      <button type="submit" className="submitBtn">Book appointment</button>
     </form>
   )
 }
