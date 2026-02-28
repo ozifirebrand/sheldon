@@ -5,7 +5,6 @@ export const DURATION_SLOTS = [
   { value: 2, label: '30 min' },
 ] as const
 
-/** Clinic branding for the appointment page */
 export const CLINIC_NAME = 'Gurey Clinic'
 
 export const API_PATH_APPOINTMENTS = '/api/appointments'
