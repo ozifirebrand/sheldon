@@ -54,7 +54,12 @@ export default function BookingForm({
           ))}
         </select>
         <label>Date</label>
-        <input type="date" value={date} onChange={(e) => setDate(e.target.value)} />
+        <input
+          type="date"
+          value={date}
+          min={new Date().toISOString().slice(0, 10)}
+          onChange={(e) => setDate(e.target.value)}
+        />
         <label>Time slot</label>
         <div className="slotPickerWrap">
           <div className="slotPicker">
@@ -114,6 +119,7 @@ export default function BookingForm({
           value={patientContact}
           onChange={(e) => setPatientContact(e.target.value)}
           placeholder="Email or phone"
+          required
         />
       </div>
       <button type="submit" className="submitBtn">Book appointment</button>

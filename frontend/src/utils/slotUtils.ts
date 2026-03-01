@@ -28,13 +28,11 @@ export function slotOptions(date: Date): SlotOption[] {
   return out
 }
 
-/** Appointment-like shape to compute taken slots without importing api */
 export interface AppointmentSlotSpan {
   start_time_unix: number
   duration_slots: number
 }
 
-/** Returns the set of slot start unix timestamps that are occupied on the given date. */
 export function getTakenSlotUnixSet(
   appointments: AppointmentSlotSpan[],
   date: Date

@@ -4,7 +4,6 @@ import (
 	"os"
 )
 
-// Config holds server configuration from env (and optional flag overrides).
 type Config struct {
 	GRPCAddr string
 	HTTPAddr string
